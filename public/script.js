@@ -4,7 +4,7 @@ const localVideo = document.getElementById("localVideo");
 const remoteVideo = document.getElementById("remoteVideo");
 const startCallButton = document.getElementById("startCall");
 
-navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+navigator.mediaDevices.getUserMedia({ video: true, audio: { echoCancellation: true, noiseSuppression: true } })
     .then((stream) => {
         localVideo.srcObject = stream;
         stream.getTracks().forEach((track) => peerConnection.addTrack(track, stream));
